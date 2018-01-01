@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  NavLink
 } from 'react-router-dom';
 import './App.css';
 import Signup from './Signup';
@@ -120,7 +121,14 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <UserProfile user={this.state.user} logout={this.logout} />
+            <Navbar>
+              <li><NavLink to='/profile'>Profile</NavLink></li>
+              <li onClick={this.logout}><NavLink to='/'>Log Out</NavLink></li>
+            </Navbar>
+            <Route path='/profile' render={(props) => (
+              <UserProfile {...props} user={this.state.user} logout={this.logout} />
+            )} />
+            <Route exact path='/' component={Home} />
           </div>
         </Router>
       );

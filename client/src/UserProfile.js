@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewActivity from './NewActivity';
 import Logout from './Logout';
 
 class UserProfile extends Component {
@@ -14,6 +15,7 @@ class UserProfile extends Component {
       <div className='UserProfileBox'>
         <p>Hello, {this.props.user.name}!</p>
         <a onClick={this.props.logout}>Logout</a>
+        <NewActivity />
       </div>
     );
   }
