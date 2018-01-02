@@ -4,7 +4,26 @@ var {User, Activity} = require('../models/user');
 
 
 router.post('/new', function(req, res, next) {
-    console.log("We've been hit")
+    console.log(req.body)
+    Activity.create({
+        day: req.body.day,
+        start: req.body.start,
+        finish: req.body.finish,
+        duration: req.body.duration,
+        category: req.body.category,
+        subCategory: req.body.subCategory,
+        notes: req.body.notes,
+        location: req.body.location,
+        user: req.body.user
+    }, function (err, result) {
+        if (err) {
+            res.send(err.message)
+        }
+        console.log("The spell id is" + result._id)
+        User.update({ _id: req.body.user }, { $push: { activities: result._id } }, function (err, user) {
+            if (err) console.log(err);
+        })
+    })
 })
 
 module.exports = router;

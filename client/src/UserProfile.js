@@ -15,7 +15,7 @@ class UserProfile extends Component {
       <div className='UserProfileBox'>
         <p>Hello, {this.props.user.name}!</p>
         <a onClick={this.props.logout}>Logout</a>
-        <NewActivity />
+        <NewActivity user={this.props.user} />
       </div>
     );
   }

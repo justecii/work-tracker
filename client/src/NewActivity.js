@@ -74,7 +74,8 @@ class NewActivity extends Component{
                 category: this.state.category,
                 subCategory: this.state.subCat,
                 notes: this.state.addNotes,
-                location: this.state.location
+                location: this.state.location,
+                user: this.props.user.id
             })
         } else {
             console.log("Enter a Valid Time")
