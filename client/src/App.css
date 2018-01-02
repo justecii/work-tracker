@@ -8,3 +8,12 @@
     text-align: left;
     width: 110% !important;
 }
+
+.fullWidth {
+    width: 150% !important;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 1.4rem;
+}

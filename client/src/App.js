@@ -11,6 +11,7 @@ import Login from './Login';
 import Logout from './Logout';
 import Home from './Home';
 import UserProfile from './UserProfile';
+import ActivityLog from './ActivityLog';
 import axios from 'axios';
 import { Row, Col, Navbar, NavItem, Button } from 'react-materialize';
 import Modal from 'react-modal';
@@ -123,10 +124,14 @@ class App extends Component {
           <div className='App'>
             <Navbar>
               <li><NavLink to='/profile'>Profile</NavLink></li>
+              <li><NavLink to='/activities'>MyLog</NavLink></li>
               <li onClick={this.logout}><NavLink to='/'>Log Out</NavLink></li>
             </Navbar>
             <Route path='/profile' render={(props) => (
               <UserProfile {...props} user={this.state.user} logout={this.logout} />
+            )} />
+            <Route path='/activities' render={(props) => (
+              <ActivityLog {...props} user={this.state.user} />
             )} />
             <Route exact path='/' component={Home} />
           </div>

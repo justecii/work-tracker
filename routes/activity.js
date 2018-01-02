@@ -19,7 +19,6 @@ router.post('/new', function(req, res, next) {
         if (err) {
             res.send(err.message)
         }
-        console.log("The spell id is" + result._id)
         User.update({ _id: req.body.user }, { $push: { activities: result._id } }, function (err, user) {
             if (err) console.log(err);
         })

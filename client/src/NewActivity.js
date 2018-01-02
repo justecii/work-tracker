@@ -86,29 +86,49 @@ class NewActivity extends Component{
         return(
             <div>
                 <form>
-                    <Input label='Category' type="text" className="newFormItem" onInput={(e) => this.handleCat(e)} />
-                    <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
-                    <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />
-                    Start Time:<DatePicker
-                        selected={this.state.startDate}
-                        onChange={this.handleChange}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={5}
-                        dateFormat="LLL"
-                        className="newFormItem"
-                    />
-                    End Time:<DatePicker
-                        selected={this.state.endDate}
-                        onChange={this.handleEnd}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={5}
-                        dateFormat="LLL"
-                        className="newFormItem"
-                    />
-                    <Input label='Notes' type="text" className="newFormItem" onInput={(e) => this.handleNote(e)} />
-                    <Button onClick={(e) => this.onClick(e)}>Submit</Button>
+                    <Row>
+                        <Col s={12} m={6} >
+                            Start Time:<DatePicker
+                                selected={this.state.startDate}
+                                onChange={this.handleChange}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={5}
+                                dateFormat="LLL"
+                                className="newFormItem"
+                            />
+                        </Col>
+                        <Col s={12} m={6} >
+                            End Time:<DatePicker
+                                selected={this.state.endDate}
+                                onChange={this.handleEnd}
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={5}
+                                dateFormat="LLL"
+                                className="newFormItem"
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col s={12} m={4} >
+                            <Input label='Category' type="text" className="newFormItem" onInput={(e) => this.handleCat(e)} />
+                        </Col>
+                        <Col s={12} m={4} >
+                            <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
+                        </Col>
+                        <Col s={12} m={4} >
+                            <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col s={12} m={8} >
+                            <Input label='Notes' type="text" className="newFormItem fullWidth" onInput={(e) => this.handleNote(e)} />
+                        </Col>
+                        <Col s={12} m={4} >
+                            <Button onClick={(e) => this.onClick(e)}>Submit</Button>
+                        </Col>
+                    </Row>
                 </form>
                 <p className="newFormItem">Length {this.state.minDuration} minutes</p>
             </div>
