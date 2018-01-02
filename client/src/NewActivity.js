@@ -11,7 +11,12 @@ class NewActivity extends Component{
         this.state = {
             startDate: moment(),
             endDate: moment(),
-            minDuration: 0
+            minDuration: 0,
+            activity: '',
+            category: '',
+            subCat: '',
+            location: '',
+            addNotes: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleEnd = this.handleEnd.bind(this)
@@ -25,6 +30,31 @@ class NewActivity extends Component{
         this.setState({
             endDate: date
         });
+    }
+    handleAct(e){
+       this.setState({
+           activity: e.target.value
+       })
+    }
+    handleCat(e) {
+        this.setState({
+            category: e.target.value
+        })
+    }
+    handleSubCat(e) {
+        this.setState({
+            subCat: e.target.value
+        })
+    }
+    handleLoc(e) {
+        this.setState({
+            location: e.target.value
+        })
+    }
+    handleNote(e) {
+        this.setState({
+            addNotes: e.target.value
+        })
     }
     onClick(e){
         e.preventDefault()
@@ -51,9 +81,10 @@ class NewActivity extends Component{
         return(
             <div>
                 <form>
-                    <Input label='Activity' type="text"/>
-                    <Input label='Category' type="text" />
-                    <Input label='Location' type="text" />
+                    <Input label='Activity' type="text" className="newFormItem" onInput={(e) => this.handleAct(e)} />
+                    <Input label='Category' type="text" className="newFormItem" onInput={(e) => this.handleCat(e)} />
+                    <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
+                    <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />
                     Start Time:<DatePicker
                         selected={this.state.startDate}
                         onChange={this.handleChange}
@@ -61,6 +92,7 @@ class NewActivity extends Component{
                         timeFormat="HH:mm"
                         timeIntervals={5}
                         dateFormat="LLL"
+                        className="newFormItem"
                     />
                     End Time:<DatePicker
                         selected={this.state.endDate}
@@ -69,11 +101,12 @@ class NewActivity extends Component{
                         timeFormat="HH:mm"
                         timeIntervals={5}
                         dateFormat="LLL"
+                        className="newFormItem"
                     />
-                    <Input label='Notes' type="text" />
+                    <Input label='Notes' type="text" className="newFormItem" onInput={(e) => this.handleNote(e)} />
                     <Button onClick={(e) => this.onClick(e)}>Submit</Button>
                 </form>
-                <p>Length {this.state.minDuration} minutes</p>
+                <p className="newFormItem">Length {this.state.minDuration} minutes</p>
             </div>
         )
     }

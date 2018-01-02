@@ -1,18 +1,10 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.SignupBox {
-  background: lightgreen;
-  padding: 0.5em;
-}
-
-.LoginBox {
-  background: lightblue;
-  padding: 0.5em;
-}
-
-.LogoutBox {
-  background: lightred;
-  padding: 0.5em;
+.newFormItem {
+    border: 2px solid orchid;
+    font-size: 1.1rem !important;
+    text-align: left;
+    width: 110% !important;
 }
