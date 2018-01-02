@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Input, Button, Row, Col } from 'react-materialize';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import axios from 'axios';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -12,7 +13,6 @@ class NewActivity extends Component{
             startDate: moment(),
             endDate: moment(),
             minDuration: 0,
-            activity: '',
             category: '',
             subCat: '',
             location: '',
@@ -31,11 +31,7 @@ class NewActivity extends Component{
             endDate: date
         });
     }
-    handleAct(e){
-       this.setState({
-           activity: e.target.value
-       })
-    }
+
     handleCat(e) {
         this.setState({
             category: e.target.value
@@ -62,15 +58,23 @@ class NewActivity extends Component{
         var startTime = this.state.startDate._d
         var finishTime = this.state.endDate._d
         var ms = moment(finishTime, "DD/MM/YYYY HH:mm:ss").diff(moment(startTime, "DD/MM/YYYY HH:mm:ss"));
-        var d = moment.duration(ms);
-        var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm");
-        console.log(ms);
-        console.log(s);
+        // var d = moment.duration(ms);
+        // var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm");
+        var actDate = moment(startTime).format("MM-DD-YYYY")
         var minDur = Math.floor(ms / 60000)
-        console.log(minDur + " minutes");
         if (minDur > 0) {
             this.setState({
                 minDuration: minDur
+            })
+            axios.post('/activity/new', {
+                day: actDate,
+                start: startTime,
+                finish: finishTime,
+                duration: minDur,
+                category: this.state.category,
+                subCategory: this.state.subCat,
+                notes: this.state.addNotes,
+                location: this.state.location
             })
         } else {
             console.log("Enter a Valid Time")
@@ -81,7 +85,6 @@ class NewActivity extends Component{
         return(
             <div>
                 <form>
-                    <Input label='Activity' type="text" className="newFormItem" onInput={(e) => this.handleAct(e)} />
                     <Input label='Category' type="text" className="newFormItem" onInput={(e) => this.handleCat(e)} />
                     <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
                     <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />

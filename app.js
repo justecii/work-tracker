@@ -14,6 +14,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/work-tracker');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var activity = require('./routes/activity');
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/activity', activity);
 
 app.get('*', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
