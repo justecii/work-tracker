@@ -5,7 +5,6 @@ import moment from 'moment';
 import axios from 'axios';
 
 import 'react-datepicker/dist/react-datepicker.css';
-
 class NewActivity extends Component{
     constructor(props) {
         super(props)
@@ -86,9 +85,10 @@ class NewActivity extends Component{
     }
 
     render(){
+        var conditionalSub;
         switch (this.state.category) {
             case "Sleeping":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat}>
                         <option onChange={this.handleSubCat} value='Bed'>Bed</option>
                         <option value='Nap'>Nap</option>
@@ -96,7 +96,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Eating":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} >
                         <option value='Cooking'>Cooked at Home</option>
                         <option value='Eating Out'>Eating Out</option>
@@ -105,7 +105,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Commute/Travel":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} >
                         <option value='Bus'>Bus</option>
                         <option value='Walking'>Walking</option>
@@ -115,7 +115,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Chores":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
                         <option value='Cleaning'>Cleaning</option>
                         <option value='Laundry'>Laundry</option>
@@ -124,7 +124,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Entertainment":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
                         <option value='Internet'>Internet</option>
                         <option value='TV'>TV</option>
@@ -135,7 +135,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Leisure":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" onChange={(e) => this.handleSubCat(e)}>
                         <option value='Drinking'>Drinking</option>
                         <option value='Magic'>MTG</option>
@@ -145,7 +145,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Adulting":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
                         <option value='Paying Bills'>Paying Bills</option>
                         <option value='Health Care'>Health Care</option>
@@ -155,7 +155,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Productivity":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
                         <option value='Coding'>Coding</option>
                         <option value='Learning'>Learning</option>
@@ -166,7 +166,7 @@ class NewActivity extends Component{
                 )
                 break;
             case "Correspondence":
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label='Sub-Category' type="select" defaultValue='Bed' className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
                         <option value='Bed'>Bed</option>
                         <option value='Nap'>Nap</option>
@@ -174,7 +174,7 @@ class NewActivity extends Component{
                 )
                 break;
             default: 
-                var conditionalSub = (
+                conditionalSub = (
                     <Input label="Sub-Category" type="text" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} />
                 )
         }

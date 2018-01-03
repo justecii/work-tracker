@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NewActivity from './NewActivity';
-import Logout from './Logout';
 
 class UserProfile extends Component {
   constructor(props) {

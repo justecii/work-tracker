@@ -12,8 +12,9 @@ import Logout from './Logout';
 import Home from './Home';
 import UserProfile from './UserProfile';
 import ActivityLog from './ActivityLog';
+import CatData from './CatData';
 import axios from 'axios';
-import { Row, Col, Navbar, NavItem, Button } from 'react-materialize';
+import { Navbar, Button } from 'react-materialize';
 import Modal from 'react-modal';
 // import 'react-select/dist/react-select.css';
 
@@ -134,6 +135,9 @@ class App extends Component {
               <ActivityLog {...props} user={this.state.user} />
             )} />
             <Route exact path='/' component={Home} />
+            <Route path='/category' render={(props) => (
+              <CatData {...props} user={this.state.user} category={this.state} />
+             )} />
           </div>
         </Router>
       );
