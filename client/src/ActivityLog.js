@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
+import CatData from './CatData';
 import axios from 'axios';
 import moment from 'moment';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from 'react-router-dom';
 
 class ActivityLog extends Component {
     constructor(props){
@@ -30,7 +38,14 @@ class ActivityLog extends Component {
                 <td>{moment(item.start).format('HH:mm')}</td>
                 <td>{moment(item.finish).format('HH:mm')}</td>
                 <td>{item.duration} minutes</td>
-                <td>{item.category}</td>
+                <Router>
+                    <td><Link to='/category'>{item.category}</Link>
+                        <Route path='/category' render={(props) => (
+                            <CatData {...props} user={this.props.user} category={item.category} />
+                        )} />
+                    </td>
+                    
+                </Router>
                 <td>{item.subCategory}</td>
                 <td>{item.location}</td>
                 <td>{item.notes}</td>

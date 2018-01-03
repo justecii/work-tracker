@@ -20,6 +20,7 @@ class NewActivity extends Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleEnd = this.handleEnd.bind(this)
+        this.handleSubCat = this.handleSubCat.bind(this)
     }
     handleChange(date) {
         this.setState({
@@ -41,6 +42,8 @@ class NewActivity extends Component{
         this.setState({
             subCat: e.target.value
         })
+        console.log('SUBCAT CHANGED')
+        console.log(e.target.value)
     }
     handleLoc(e) {
         this.setState({
@@ -83,6 +86,110 @@ class NewActivity extends Component{
     }
 
     render(){
+        switch (this.state.category) {
+            case "Sleeping":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat}>
+                        <option onChange={this.handleSubCat} value='Bed'>Bed</option>
+                        <option value='Nap'>Nap</option>
+                    </Input>
+                )
+                break;
+            case "Eating":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} >
+                        <option value='Cooking'>Cooked at Home</option>
+                        <option value='Eating Out'>Eating Out</option>
+                        <option value="Snacking">Snacking</option>
+                    </Input>
+                )
+                break;
+            case "Commute/Travel":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} >
+                        <option value='Bus'>Bus</option>
+                        <option value='Walking'>Walking</option>
+                        <option value="Driving">Driving</option>
+                        <option value="Flight">Flight</option>
+                    </Input>
+                )
+                break;
+            case "Chores":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
+                        <option value='Cleaning'>Cleaning</option>
+                        <option value='Laundry'>Laundry</option>
+                        <option value="Yard">Yard Work</option>
+                    </Input>
+                )
+                break;
+            case "Entertainment":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
+                        <option value='Internet'>Internet</option>
+                        <option value='TV'>TV</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Movie">Movie</option>
+                        <option value="Video Games">Video Games</option>
+                    </Input>
+                )
+                break;
+            case "Leisure":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" onChange={(e) => this.handleSubCat(e)}>
+                        <option value='Drinking'>Drinking</option>
+                        <option value='Magic'>MTG</option>
+                        <option value="Hanging Out">Hanging Out</option>
+                        <option value="Games">Board Games</option>
+                    </Input>
+                )
+                break;
+            case "Adulting":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
+                        <option value='Paying Bills'>Paying Bills</option>
+                        <option value='Health Care'>Health Care</option>
+                        <option value="Work">Work</option>
+                        <option value="General Apt">General Appointment</option>
+                    </Input>
+                )
+                break;
+            case "Productivity":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
+                        <option value='Coding'>Coding</option>
+                        <option value='Learning'>Learning</option>
+                        <option value="Skill Building">Skill Building</option>
+                        <option value="Job Applications">Job Apps</option>
+                        <option value="Networking">Networking</option>
+                    </Input>
+                )
+                break;
+            case "Correspondence":
+                var conditionalSub = (
+                    <Input label='Sub-Category' type="select" defaultValue='Bed' className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
+                        <option value='Bed'>Bed</option>
+                        <option value='Nap'>Nap</option>
+                    </Input>
+                )
+                break;
+            default: 
+                var conditionalSub = (
+                    <Input label="Sub-Category" type="text" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} />
+                )
+        }
+        // if (this.state.category === "Sleeping"){
+        //     var conditionalSub = (
+        //         <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
+        //             <option value='Bed'>Bed</option>
+        //             <option value='Nap'>Nap</option>
+        //         </Input>
+        //     )
+        // } else {
+        //     var conditionalSub = (
+        //         <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
+        //     )
+        // }
         return(
             <div>
                 <form>
@@ -112,10 +219,22 @@ class NewActivity extends Component{
                     </Row>
                     <Row>
                         <Col s={12} m={4} >
-                            <Input label='Category' type="text" className="newFormItem" onInput={(e) => this.handleCat(e)} />
+                            <Input label='Category' type="select" className="newFormItem" onChange={(e) => this.handleCat(e)}>
+                                <option value='Sleeping'>Sleep</option>
+                                <option value='Eating'>Eating</option>
+                                <option value='Commute/Travel'>Commute/Travel</option>
+                                <option value="Chores">Chores</option>
+                                <option value="Self-care">Self-care</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Exercise">Exercise</option>
+                                <option value="Leisure">Leisure</option>
+                                <option value="Adulting">Adulting</option>
+                                <option value="Productivity">Productivity</option>
+                                <option value="Correspondence">Correspondence</option>
+                            </Input>
                         </Col>
                         <Col s={12} m={4} >
-                            <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
+                            {conditionalSub}
                         </Col>
                         <Col s={12} m={4} >
                             <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />
