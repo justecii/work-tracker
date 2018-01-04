@@ -15,21 +15,19 @@ class ActivityLog extends Component {
         this.state={
             acts: [],
             category: "",
-            redirect: false
+            redirect: this.props.redirect
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleRedirect = this.handleRedirect.bind(this);
     }
     componentDidMount(){
-        console.log(this.props.user.id)
         axios.post('/users/actLog', {
             user: this.props.user.id
         }).then(result =>{
             this.setState({
                 acts: result.data
-            })
-            console.log(this.state.acts)
-        })
+            });
+        });
     }
     handleRedirect(e){
         var cat = e.target.value

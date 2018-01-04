@@ -1,13 +1,23 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import {Button} from 'react-materialize';
+import {Button } from 'react-materialize';
+
+
+const styles ={
+    width: 500,
+    height: 300,
+    padding: 30
+}
 
 class CatData extends Component {
     constructor(props){
         super(props)
         this.state={
-            catData: []
+            catData: [],
+            durDataPoint: [],
+            dateDataPoint: [],
+            data: {}
         }
         this.componentDidMount = this.componentDidMount.bind(this)
     }
@@ -20,23 +30,36 @@ class CatData extends Component {
                 catData: result.data
             })
             console.log(this.state.catData)
-            console.log(this.state.catData[0].duration)
+            for (var i = 0; i< this.state.catData.length; i++) {
+                var addDur = this.state.catData[i].duration;
+                var addDate = moment(this.state.catData[i].day).format('MM/DD/YYYY');
+                this.setState({
+                    durDataPoint: [...this.state.durDataPoint, addDur],
+                    dateDataPoint: [...this.state.dateDataPoint, addDate],
+                    data: [ ...this.state.data, {"day": addDate, "duration": addDur }]
+                })
+            }
         });
-        
     }
+
+    
     render(){
-        let mappedData = this.state.catData.map((index, item) => (
-            <tr key={index}>
-                <td>{moment(item.day).format('MM-DD-YYYY')}</td>
-                <td>{moment(item.start).format('HH:mm')}</td>
-                <td>{moment(item.finish).format('HH:mm')}</td>
-                <td>{item.duration}</td>
-            </tr>
+        var totalDur = parseFloat(this.state.durDataPoint.reduce(function(a,b){
+            return a +b;
+        }, 0));
+        
+        var mappedDur = this.state.durDataPoint.map((item, index) =>(
+            <rect key={index} x={index *100} y="0" width="100" height={item}></rect>
+            
         ))
         return(
             <div>
                 <h1>{this.props.category} - {this.props.user.name}</h1>
-                {mappedData}
+                {totalDur} Total minutes spent
+                <svg height='500' width='500'>
+                    {mappedDur}
+                </svg>
+                <Button>Back</Button>
             </div>
         )
     }

@@ -132,7 +132,7 @@ class App extends Component {
               <UserProfile {...props} user={this.state.user} logout={this.logout} />
             )} />
             <Route path='/activities' render={(props) => (
-              <ActivityLog {...props} user={this.state.user} />
+              <ActivityLog {...props} user={this.state.user} redirect={false}/>
             )} />
             <Route exact path='/' component={Home} />
             <Route path='/category' render={(props) => (
