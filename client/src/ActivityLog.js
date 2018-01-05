@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import CatData from './CatData';
+import TotalPie from './TotalPie';
 import axios from 'axios';
 import moment from 'moment';
 import {
@@ -24,6 +25,7 @@ class ActivityLog extends Component {
         axios.post('/users/actLog', {
             user: this.props.user.id
         }).then(result =>{
+            // sorts data by time of occurence, regardless of when input
             var sorted = result.data
             sorted.sort(function(a, b){
                 if (moment(a.start) < moment(b.start))
@@ -36,6 +38,7 @@ class ActivityLog extends Component {
                 acts: result.data
             });
         });
+        
     }
     handleRedirect(e){
         var cat = e.target.value
@@ -82,7 +85,7 @@ class ActivityLog extends Component {
                             {mappedActs}
                         </tbody>
                     </table>
-
+                    <TotalPie user={this.props.user} />
                 </div>
             )
         }

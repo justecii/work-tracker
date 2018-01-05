@@ -52,21 +52,24 @@ class CatData extends Component {
         
         return(
             <div>
-                <h1>{this.props.category} - {this.props.user.name}</h1>
-                <h3>{totalDur} Total minutes spent</h3><Button>Back</Button>
-                <VictoryChart domainPadding={20} theme={VictoryTheme.material}>
+                <h3>{this.props.category} - {this.props.user.name}</h3>
+                <h5>{totalDur} Total minutes spent</h5><Button>Back</Button>
+                <VictoryChart domainPadding={20} theme={VictoryTheme.material} style={{ parent: { maxWidth: "60%" } }} >
                     <VictoryAxis 
                         tickFormat={this.state.dateDataPoint}
+                        style={{ tickLabels: { fontSize: 8, padding: 20, angle: 45 } }}
                     />
                     <VictoryAxis 
                         dependentAxis
+                        label="Time (min)"
+                        style={{tickLabels: {fontSize: 10, padding: 25}}}
                     />
-                    <VictoryBar 
+                    <VictoryBar
+                        style={{ data: { fill: "red" }}}
                         data={this.state.catData}
                         x="start"
                         y="duration" 
                     />
-                
                 </VictoryChart>
             </div>
         )
