@@ -2,13 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import {Button } from 'react-materialize';
-
-
-const styles ={
-    width: 500,
-    height: 300,
-    padding: 30
-}
+import {VictoryChart, VictoryAxis, VictoryBar, VictoryTheme, VictoryStack} from 'victory';
 
 class CatData extends Component {
     constructor(props){
@@ -26,6 +20,15 @@ class CatData extends Component {
             user: this.props.user,
             category: this.props.category
         }).then(result =>{
+            // sorts data by time of occurence, regardless of when input
+            var sorted = result.data
+            sorted.sort(function (a, b) {
+                if (moment(a.start) < moment(b.start))
+                    return -1;
+                if (moment(a.start) > moment(b.start))
+                    return 1;
+                else return 0
+            });
             this.setState({
                 catData: result.data
             })
@@ -41,25 +44,30 @@ class CatData extends Component {
             }
         });
     }
-
     
     render(){
         var totalDur = parseFloat(this.state.durDataPoint.reduce(function(a,b){
             return a +b;
         }, 0));
         
-        var mappedDur = this.state.durDataPoint.map((item, index) =>(
-            <rect key={index} x={index *100} y="0" width="100" height={item}></rect>
-            
-        ))
         return(
             <div>
                 <h1>{this.props.category} - {this.props.user.name}</h1>
-                {totalDur} Total minutes spent
-                <svg height='500' width='500'>
-                    {mappedDur}
-                </svg>
-                <Button>Back</Button>
+                <h3>{totalDur} Total minutes spent</h3><Button>Back</Button>
+                <VictoryChart domainPadding={20} theme={VictoryTheme.material}>
+                    <VictoryAxis 
+                        tickFormat={this.state.dateDataPoint}
+                    />
+                    <VictoryAxis 
+                        dependentAxis
+                    />
+                    <VictoryBar 
+                        data={this.state.catData}
+                        x="start"
+                        y="duration" 
+                    />
+                
+                </VictoryChart>
             </div>
         )
     }

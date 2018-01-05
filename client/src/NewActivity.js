@@ -150,6 +150,7 @@ class NewActivity extends Component{
                         <option value='Paying Bills'>Paying Bills</option>
                         <option value='Health Care'>Health Care</option>
                         <option value="Work">Work</option>
+                        <option value="Groceries">Groceries</option>
                         <option value="General Apt">General Appointment</option>
                     </Input>
                 )

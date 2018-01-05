@@ -24,6 +24,14 @@ class ActivityLog extends Component {
         axios.post('/users/actLog', {
             user: this.props.user.id
         }).then(result =>{
+            var sorted = result.data
+            sorted.sort(function(a, b){
+                if (moment(a.start) < moment(b.start))
+                    return -1;
+                if (moment(a.start) > moment(b.start))
+                    return 1;
+                else return 0
+            });
             this.setState({
                 acts: result.data
             });
