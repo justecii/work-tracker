@@ -3,6 +3,7 @@ import CatData from './CatData';
 import TotalPie from './TotalPie';
 import axios from 'axios';
 import moment from 'moment';
+import {Tabs, Tab} from 'react-materialize';
 import {
     BrowserRouter as Router,
     Route,
@@ -68,24 +69,32 @@ class ActivityLog extends Component {
             return (
                 <div>
                     The Activity Log for <span className="bold">{this.props.user.name}</span>  will be here
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Start</th>
-                                <th>End</th>
-                                <th>Duration</th>
-                                <th>Category</th>
-                                <th>Sub-Category</th>
-                                <th>Location</th>
-                                <th>Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {mappedActs}
-                        </tbody>
-                    </table>
-                    <TotalPie user={this.props.user} />
+                    
+                    <Tabs className='tab-demo z-depth-1'>
+                        <Tab title="Log">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Duration</th>
+                                        <th>Category</th>
+                                        <th>Sub-Category</th>
+                                        <th>Location</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {mappedActs}
+                                </tbody>
+                            </table>
+                        </Tab>
+                        <Tab title="Total">
+                            <TotalPie user={this.props.user} />
+                        </Tab>
+                    </Tabs>
+                    
                 </div>
             )
         }

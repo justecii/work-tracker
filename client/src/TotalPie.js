@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {VictoryPie, VictoryTheme} from 'victory';
+import {VictoryPie, VictoryTheme, VictoryTooltip} from 'victory';
 
 class TotalPie extends Component {
     constructor(props){
@@ -89,7 +89,6 @@ class TotalPie extends Component {
                         console.log(result.data[i])
                 }
             }
-            console.log(this.state)
         });
 
     }
@@ -110,6 +109,63 @@ class TotalPie extends Component {
                     { x: "Self-care", y: this.state.self}                   
                 ]}
                 theme={VictoryTheme.material}
+                style={{labels: {fontSize:8, fill: "black"}}}
+                innerRadius={10}
+                labelRadius={100}
+                events={[{
+                    target: "data",
+                    eventHandlers: {
+                        onMouseEnter: () => {
+                            return [
+                                {
+                                    target: "data",
+                                    mutation: (props) => {
+                                        const fill = props.style && props.style.fill;
+                                        const stroke = props.style.stroke;
+                                        active: true;
+                                        return { style: { fill: "purple", stroke: "#000" }};
+                                    }
+                                }, {
+                                    target: "labels",
+                                    mutation: (props) => {
+                                        active: true;
+                                        {/* display percentage - convert radians to percentage */}
+                                        return props.angle === 10 ? null : { text: (props.datum.xName) + "  -  "  + ((props.slice.endAngle-props.slice.startAngle)*15.916).toFixed(1)+ "%", angle: 10};
+                                    }
+                                }
+                            ];
+                        },
+                        onMouseOut: () => {
+                            return [
+                                {
+                                    target: "data",
+                                    mutation: (props) => {
+                                        active: false
+                                    } 
+                                }, {
+                                    target: "labels",
+                                    mutation: (props) => {
+                                        active: false
+                                    }
+                                }
+                            ]
+                        },
+                        onClick: (e) => {
+                            return [
+                                {
+                                    target: "data",
+                                    mutation: (props) => {
+                                        console.log(props)
+                                        this.setState({
+                                            test: props.datum.xName
+                                        })
+                                        console.log(this.state.test)
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }]}
             />
         )
     }
