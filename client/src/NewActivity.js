@@ -54,8 +54,9 @@ class NewActivity extends Component{
             addNotes: e.target.value
         })
     }
+    // Form Submit
     onClick(e){
-        e.preventDefault()
+        // e.preventDefault()
         console.log(this.state)
         var startTime = this.state.startDate._d
         var finishTime = this.state.endDate._d

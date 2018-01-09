@@ -110,7 +110,7 @@ class TotalPie extends Component {
                 ]}
                 theme={VictoryTheme.material}
                 style={{labels: {fontSize:8, fill: "black"}}}
-                innerRadius={10}
+                innerRadius={0}
                 labelRadius={100}
                 events={[{
                     target: "data",

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CatData from './CatData';
 import TotalPie from './TotalPie';
+import DayData from './DayData';
 import axios from 'axios';
 import moment from 'moment';
 import {Tabs, Tab} from 'react-materialize';
@@ -92,6 +93,9 @@ class ActivityLog extends Component {
                         </Tab>
                         <Tab title="Total">
                             <TotalPie user={this.props.user} />
+                        </Tab>
+                        <Tab title="Day Tracker">
+                            <DayData user={this.props.user} acts={this.state.acts} />
                         </Tab>
                     </Tabs>
                     
