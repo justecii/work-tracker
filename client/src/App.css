@@ -8,6 +8,22 @@
     padding: 0;
 }
 
+.tabs .indicator {
+    background-color: #ADD8E6;
+}
+
+.tabs .tab a {
+    color: #ADD8E6;
+}
+
+.tabs .tab a:hover {
+    color: black;
+}
+
+.tabs .tab a.active {
+    color: #ADD8E6;
+}
+
 .newFormItem {
     font-size: 1.1rem !important;
     text-align: left;
@@ -25,7 +41,7 @@
 
 p {
     margin: 5px 0px;
-    font-family: 'Six Caps', sans-serif;
+    font-family: 'Dosis', sans-serif;
     font-size: 30px;
     color: yellow;
 }

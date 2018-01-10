@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import {VictoryBar, VictoryLabel} from 'victory';
+import {Row, Col, Icon} from 'react-materialize';
 
 class SamplePie extends Component {
     constructor(props) {
@@ -118,10 +119,11 @@ class SamplePie extends Component {
     render() {
         return(
             <div className='left full'>
-                <div className="white">
+                <p>
                     {this.props.user.name} - {moment(this.props.selected).format("MM/DD/YYYY")}
-                </div>
-                <VictoryLabel text="Productivity" className="mauve" />
+                </p>
+                <Icon className='mauve'>computer</Icon>
+                <VictoryLabel text=" Productivity" className="mauve" />
                 <VictoryBar horizontal
                     data={[{ title: "Productivity", y: this.state.product}]}
                     style={{
@@ -140,7 +142,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Sleeping" className="ltBlue" />
+                <Icon className="ltBlue">airline_seat_individual_suite</Icon>
+                <VictoryLabel text=" Sleeping" className="ltBlue" />
                 <VictoryBar horizontal
                     data={[{ title: "Sleeping", y: this.state.sleeping }]}
                     style={{
@@ -159,7 +162,8 @@ class SamplePie extends Component {
                     }}
                     padding={{left: 0}}
                 />
-                <VictoryLabel text="Adulting" className="neon" />
+                <Icon className="neon">store</Icon>
+                <VictoryLabel text=" Adulting" className="neon" />
                 <VictoryBar horizontal
                     data={[{ title: "Adulting", y: this.state.adult }]}
                     style={{
@@ -178,7 +182,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Entertainment" className="orng" />
+                <Icon className="orng">devices</Icon>
+                <VictoryLabel text=" Entertainment" className="orng" />
                 <VictoryBar horizontal
                     data={[
                         { title: "Entertainment", y: this.state.entert}
@@ -199,7 +204,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Leisure" className="dkblue" />
+                <Icon className='dkblue'>local_bar</Icon>
+                <VictoryLabel text=" Leisure" className="dkblue" />
                 <VictoryBar horizontal
                     data={[{ title: "Leisure", y: this.state.leisure }]}
                     style={{
@@ -218,8 +224,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                
-                <VictoryLabel text="Eating" className="grn" />
+                <Icon className='grn'>local_dining</Icon>
+                <VictoryLabel text=" Eating" className="grn" />
                 <VictoryBar horizontal
                     data={[{ title: "Eating", y: this.state.eating}]}
                     style={{
@@ -238,7 +244,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Commute/Travel" className="yllw" />
+                <Icon className="yllw">drive_eta</Icon>
+                <VictoryLabel text=" Commute/Travel" className="yllw" />
                 <VictoryBar horizontal
                     data={[{ title: "Commute", y: this.state.commute}]}
                     style={{
@@ -257,7 +264,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Chores" className="pnk" />
+                <Icon className="pnk">home</Icon>
+                <VictoryLabel text=" Chores" className="pnk" />
                 <VictoryBar horizontal
                     data={[{ title: "Chores", y: this.state.chores }]}
                     style={{
@@ -276,9 +284,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                
-                
-                <VictoryLabel text="Correspondence" className="ltBrown" />
+                <Icon className="ltBrown">mode_edit</Icon>
+                <VictoryLabel text=" Correspondence" className="ltBrown" />
                 <VictoryBar horizontal
                     data={[
                         { title: "Correspondence", y: this.state.corresp }
@@ -299,7 +306,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Self-Care" className="rd" />
+                <Icon className="rd">wc</Icon>
+                <VictoryLabel text=" Self-Care" className="rd" />
                 <VictoryBar horizontal
                     data={[
                         { title: "Self-Care", y: this.state.self}
@@ -320,7 +328,8 @@ class SamplePie extends Component {
                     }}
                     padding={{ left: 0 }}
                 />
-                <VictoryLabel text="Exercise" className="purp" />
+                <Icon className="purp">directions_run</Icon>
+                <VictoryLabel text=" Exercise" className="purp" />
                 <VictoryBar horizontal
                     data={[
                         { title: "Exercise", y: this.state.exercise}

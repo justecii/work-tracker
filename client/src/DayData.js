@@ -49,15 +49,18 @@ class DayData extends Component {
 
     render(){
         let mappedDates = this.state.dates.map((item, index) =>(
-            <Button key={index} onClick={this.handleDate} value={item} className="full">{moment(item).format("MM/DD/YYYY")}</Button>
+            <Button key={index} onClick={this.handleDate} value={item} className="full ltBlue white">{moment(item).format("MM/DD/YYYY")}</Button>
         ))
         return(
             <div>
                 <Row>
-                    <Col s={3}>
+                    <Col s={12} m={2}>
+                        <p>Choose a Date:</p>
                         {mappedDates}
                     </Col>
-                    <Col s={9}>
+                    <Col s={0} m={1}>
+                    </Col>
+                    <Col s={12} m={9}>
                     <SamplePie user={this.props.user} selected={this.state.selected} />
                     </Col>
                 </Row>

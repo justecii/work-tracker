@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NewActivity from './NewActivity';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -13,8 +12,8 @@ class UserProfile extends Component {
     return (
       <div className='UserProfileBox'>
         <p>Hello, {this.props.user.name}!</p>
+        <p>Additional functionality soon - <br/> i.e. Goal Setting, fitness tracking</p>
         <a onClick={this.props.logout}>Logout</a>
-        <NewActivity user={this.props.user} />
       </div>
     );
   }

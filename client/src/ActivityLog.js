@@ -4,7 +4,7 @@ import TotalPie from './TotalPie';
 import DayData from './DayData';
 import axios from 'axios';
 import moment from 'moment';
-import {Tabs, Tab} from 'react-materialize';
+import {Tabs, Tab, Button} from 'react-materialize';
 import {
     BrowserRouter as Router,
     Route,
@@ -56,7 +56,7 @@ class ActivityLog extends Component {
                 <td>{moment(item.start).format('HH:mm')}</td>
                 <td>{moment(item.finish).format('HH:mm')}</td>
                 <td>{item.duration} minutes</td>
-                <td><button onClick={(e) => this.handleRedirect(e)} value={item.category}>{item.category}</button></td>
+                <td><Button onClick={(e) => this.handleRedirect(e)} value={item.category} className="full ltBlue white">{item.category}</Button></td>
                 <td>{item.subCategory}</td>
                 <td>{item.location}</td>
                 <td>{item.notes}</td>
@@ -73,7 +73,7 @@ class ActivityLog extends Component {
                     
                     <Tabs className='tab-demo z-depth-1'>
                         <Tab title="Log">
-                            <table className="white">
+                            <table className="ltBlue">
                                 <thead>
                                     <tr>
                                         <th>Date</th>

@@ -13,6 +13,7 @@ import Home from './Home';
 import UserProfile from './UserProfile';
 import ActivityLog from './ActivityLog';
 import CatData from './CatData';
+import NewActivity from './NewActivity';
 import axios from 'axios';
 import { Navbar, Button } from 'react-materialize';
 import Modal from 'react-modal';
@@ -123,9 +124,10 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <Navbar brand="Watch DaWg" right>
+            <Navbar brand="WAID Timer" right>
               <li><NavLink to='/profile'>Profile</NavLink></li>
               <li><NavLink to='/activities'>MyLog</NavLink></li>
+              <li><NavLink to='/new'>NewActivity</NavLink></li>
               <li onClick={this.logout}><NavLink to='/'>Log Out</NavLink></li>
             </Navbar>
             <Route path='/profile' render={(props) => (
@@ -135,6 +137,9 @@ class App extends Component {
               <ActivityLog {...props} user={this.state.user} redirect={false}/>
             )} />
             <Route exact path='/' component={Home} />
+            <Route path='/new' render={(props) => (
+              <NewActivity {...props} user={this.state.user} />
+            )} />
             <Route path='/category' render={(props) => (
               <CatData {...props} user={this.state.user} category={this.state} />
              )} />
@@ -145,7 +150,7 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <Navbar>
+            <Navbar brand="WAID Timer" right>
               <li ><a onClick={this.openModal} >Login</a></li>
               <li ><a onClick={this.openSignUp} >Sign Up</a></li>
             </Navbar>
