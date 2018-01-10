@@ -1,6 +1,7 @@
+/*jshint loopfunc:true */
 import React, {Component} from 'react';
 import axios from 'axios';
-import {VictoryPie, VictoryTheme, VictoryTooltip} from 'victory';
+import {VictoryPie, VictoryTheme} from 'victory';
 
 class TotalPie extends Component {
     constructor(props){

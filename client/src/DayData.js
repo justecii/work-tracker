@@ -3,6 +3,7 @@ import SamplePie from './SamplePie';
 
 import axios from 'axios';
 import moment from 'moment';
+import {Row, Col, Button} from 'react-materialize';
 
 class DayData extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class DayData extends Component {
             dates: [],
             selected: ''
         }
-        this.handleClick = this.handleClick.bind(this);
+        this.handleDate = this.handleDate.bind(this);
     }
     componentDidMount() {
         axios.post('/users/actLog', {
@@ -31,32 +32,35 @@ class DayData extends Component {
                 acts: result.data
             });
         });
-        console.log(this.props.acts)
         let uniqueDates = Array.from(new Set(this.props.acts.map(item => item.day)));
         if (uniqueDates !== "") {
             this.setState({
                 dates: uniqueDates
             })
         }
+    }
+    handleDate(e){
+        e.preventDefault();
+        this.setState({
+            selected: e.target.value
+        })
 
     }
-    handleClick(e){
-        e.preventDefault();
-        console.log(this.props)
-        console.log(this.state)
-    }
+
     render(){
         let mappedDates = this.state.dates.map((item, index) =>(
-            <li key={index}>{moment(item).format("MM/DD/YYYY")}</li>
+            <Button key={index} onClick={this.handleDate} value={item} className="full">{moment(item).format("MM/DD/YYYY")}</Button>
         ))
         return(
             <div>
-                <ul s={3}>
-                    {mappedDates}
-                </ul>
-                <div>
+                <Row>
+                    <Col s={3}>
+                        {mappedDates}
+                    </Col>
+                    <Col s={9}>
                     <SamplePie user={this.props.user} selected={this.state.selected} />
-                </div>
+                    </Col>
+                </Row>
             </div>
         )
     }

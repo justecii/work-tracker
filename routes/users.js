@@ -16,4 +16,13 @@ router.post('/actLog', function(req, res, next) {
     });
 });
 
+// Get a day report for user
+router.post('/dailyLog', function(req, res, next) {
+    console.log("This is the day: " + req.body.day)
+    Activity.find({ user: req.body.user, day: req.body.day }, function(err, acts) {
+        if (err) return console.log(err);
+        res.send(acts)
+    });
+});
+
 module.exports = router;

@@ -1,5 +1,11 @@
 .App {
     text-align: center;
+    background-color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.row .col {
+    padding: 0;
 }
 
 .newFormItem {
@@ -15,4 +21,71 @@
 .bold {
     font-weight: bold;
     font-size: 1.4rem;
+}
+
+p {
+    margin: 5px 0px;
+    font-family: 'Six Caps', sans-serif;
+    font-size: 30px;
+    color: yellow;
+}
+
+.ltBlue {
+    color: #ADD8E6;
+}
+
+.grn {
+    color: #61a661;
+}
+
+.yllw {
+    color: #ffd700;
+}
+
+.ltBrown {
+    color: #f4a460;
+}
+
+.orng {
+    color: #ff6600;
+}
+
+.pnk {
+    color: #ff0099;
+}
+
+.purp {
+    color: #6e0dd0;
+}
+
+.neon {
+    color: #83f52c;
+}
+
+.mauve {
+    color: #b784a7;
+}
+
+.rd {
+    color: #ff3c3d;
+}
+
+.dkblue {
+    color: blue;
+}
+
+tspan {
+    align-content: right !important;
+}
+
+.left {
+    text-align: left;
+}
+
+.full {
+    width: 100%;
+}
+
+nav {
+    background-color: #ADD8E6 !important;
 }

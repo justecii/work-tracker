@@ -180,20 +180,8 @@ class NewActivity extends Component{
                     <Input label="Sub-Category" type="text" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat} />
                 )
         }
-        // if (this.state.category === "Sleeping"){
-        //     var conditionalSub = (
-        //         <Input label='Sub-Category' type="select" className="newFormItem" onInput={(e) => this.handleSubCat(e)}>
-        //             <option value='Bed'>Bed</option>
-        //             <option value='Nap'>Nap</option>
-        //         </Input>
-        //     )
-        // } else {
-        //     var conditionalSub = (
-        //         <Input label="Sub-Category" type="text" className="newFormItem" onInput={(e) => this.handleSubCat(e)} />
-        //     )
-        // }
         return(
-            <div>
+            <div className="white">
                 <form>
                     <Row>
                         <Col s={12} m={6} >

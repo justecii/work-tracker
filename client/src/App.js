@@ -123,7 +123,7 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <Navbar>
+            <Navbar brand="Watch DaWg" right>
               <li><NavLink to='/profile'>Profile</NavLink></li>
               <li><NavLink to='/activities'>MyLog</NavLink></li>
               <li onClick={this.logout}><NavLink to='/'>Log Out</NavLink></li>

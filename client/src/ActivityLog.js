@@ -69,11 +69,11 @@ class ActivityLog extends Component {
         } else {
             return (
                 <div>
-                    The Activity Log for <span className="bold">{this.props.user.name}</span>  will be here
+                    {/* The Activity Log for <span className="bold">{this.props.user.name}</span>  will be here */}
                     
                     <Tabs className='tab-demo z-depth-1'>
                         <Tab title="Log">
-                            <table>
+                            <table className="white">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
