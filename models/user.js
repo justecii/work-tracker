@@ -106,12 +106,34 @@ var goalSchema = new mongoose.Schema({
     user: [{ type: Schema.ObjectId, ref: 'User' }]
 })
 
+var mealSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    mealType: {
+        type: String,
+        required: true
+    },
+    calories: {
+        type: Number,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
+    },
+    user: [{ type: Schema.ObjectId, ref: 'User' }]
+})
+
 var User = mongoose.model('User', userSchema);
 var Activity = mongoose.model('Activity', activitySchema);
 var Goal = mongoose.model('Goal', goalSchema);
+var Meal = mongoose.model('Meal', mealSchema);
 
 module.exports = {
     User: User,
     Activity: Activity,
-    Goal: Goal
+    Goal: Goal,
+    Meal: Meal
 };

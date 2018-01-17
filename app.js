@@ -15,6 +15,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var activity = require('./routes/activity');
+var meal = require('./routes/meal');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/activity', activity);
+app.use('/meal', meal)
 
 app.get('*', function(req, res, next) {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));

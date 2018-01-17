@@ -15,11 +15,13 @@ class NewActivity extends Component{
             category: '',
             subCat: '',
             location: '',
-            addNotes: ''
+            addNotes: '',
+            meal: '',
+            mealTitle: '',
+            calories: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleEnd = this.handleEnd.bind(this)
-        this.handleSubCat = this.handleSubCat.bind(this)
     }
     handleChange(date) {
         this.setState({
@@ -54,9 +56,26 @@ class NewActivity extends Component{
             addNotes: e.target.value
         })
     }
+    // saving food information to database
+    handleMeal(e) {
+        this.setState({
+            meal: e.target.value
+        })
+    }
+    handleMealTitle(e){
+        this.setState({
+            mealTitle: e.target.value
+        })
+    }
+    handleCalories(e){
+        this.setState({
+            calories: parseInt(e.target.value, 0)
+        })
+    }
+
     // Form Submit
     onClick(e){
-        // e.preventDefault()
+        e.preventDefault()
         console.log(this.state)
         var startTime = this.state.startDate._d
         var finishTime = this.state.endDate._d
@@ -81,17 +100,27 @@ class NewActivity extends Component{
                 user: this.props.user.id
             })
         } else {
-            console.log("Enter a Valid Time")
+            alert("Enter a Valid Time")
+        }
+        if (this.state.calories > 0) {
+            axios.post('/meal/new', {
+                title: this.state.mealTitle,
+                mealType: this.state.meal,
+                calories: this.state.calories,
+                time: startTime,
+                user: this.props.user.id
+            })
         }
     }
 
     render(){
         var calorieCounter;
+        // If eating is selected, renders ability to set info about the food consumed
         if (this.state.category === "Eating"){
             calorieCounter = (
                 <Row>
                     <Col s={12} m={4} >
-                        <Input label="Meal" type="select">
+                        <Input label="Meal" type="select" onChange={(e) =>this.handleMeal(e)}>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
                             <option value="Diner">Diner</option>
@@ -100,10 +129,10 @@ class NewActivity extends Component{
                         </Input>
                     </Col>
                     <Col s={12} m={4} >
-                        <Input label="Meal Title" type="text" />
+                        <Input label="Meal Title" type="text" onChange={(e) => this.handleMealTitle(e)} />
                     </Col>
                     <Col s={12} m={4} >
-                        <Input label="Calories" type="number" />
+                        <Input label="Calories" type="number" onChange={(e) => this.handleCalories(e)} />
                     </Col>
                 </Row>
 
@@ -114,8 +143,8 @@ class NewActivity extends Component{
         switch (this.state.category) {
             case "Sleeping":
                 conditionalSub = (
-                    <Input label='Sub-Category' type="select" className="newFormItem" value={this.state.subCat} onChange={this.handleSubCat}>
-                        <option onChange={this.handleSubCat} value='Bed'>Bed</option>
+                    <Input label='Sub-Category' type="select" className="newFormItem" onChange={(e) => this.handleSubCat(e)}>
+                        <option value='Bed'>Bed</option>
                         <option value='Nap'>Nap</option>
                     </Input>
                 )

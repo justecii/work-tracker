@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var {User, Activity, Goal} = require('../models/user');
+var {User, Activity, Goal, Meal} = require('../models/user');
 
 
 router.post('/new', function(req, res, next) {
