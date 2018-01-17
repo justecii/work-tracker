@@ -23,7 +23,8 @@ var userSchema = new mongoose.Schema({
         minlength: 8,
         maxlength: 99
     },
-    activities: [{ type: Schema.ObjectId, ref: 'Activity' }]
+    activities: [{ type: Schema.ObjectId, ref: 'Activity' }],
+    goals: [{ type: Schema.ObjectId, ref: 'Goal' }]
 });
 
 // Override 'toJSON' to prevent the password from being returned with the user
@@ -88,12 +89,29 @@ var activitySchema = new mongoose.Schema({
     },
     user: [{ type: Schema.ObjectId, ref: 'User' }],
 
+});
+
+var goalSchema = new mongoose.Schema({
+    category: {
+        type: String,
+        required: true
+    },
+    subCategory: {
+        type: String
+    },
+    length: {
+        type: Number,
+        required: true
+    },
+    user: [{ type: Schema.ObjectId, ref: 'User' }]
 })
 
 var User = mongoose.model('User', userSchema);
 var Activity = mongoose.model('Activity', activitySchema);
+var Goal = mongoose.model('Goal', goalSchema);
 
 module.exports = {
     User: User,
-    Activity: Activity
+    Activity: Activity,
+    Goal: Goal
 };

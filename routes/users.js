@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { User, Activity } = require('../models/user');
+var { User, Activity, Goal } = require('../models/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -18,7 +18,6 @@ router.post('/actLog', function(req, res, next) {
 
 // Get a day report for user
 router.post('/dailyLog', function(req, res, next) {
-    console.log("This is the day: " + req.body.day)
     Activity.find({ user: req.body.user, day: req.body.day }, function(err, acts) {
         if (err) return console.log(err);
         res.send(acts)

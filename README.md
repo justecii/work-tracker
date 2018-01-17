@@ -32,4 +32,3 @@ I really wanted to work with a chart library that would render data I saved to a
 * Fitness tracking - Google OAUTH helps with their in-house fitness app
 * More graphical representation of data (more VictoryJS)
 * Better styling
-* 
