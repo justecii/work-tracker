@@ -17,7 +17,7 @@ class Goals extends Component {
             this.setState({
                 allGoals: result.data
             })
-            console.log(this.state.allGoals)
+            console.table(this.state.allGoals)
         })
     }
     

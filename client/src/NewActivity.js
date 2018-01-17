@@ -86,6 +86,30 @@ class NewActivity extends Component{
     }
 
     render(){
+        var calorieCounter;
+        if (this.state.category === "Eating"){
+            calorieCounter = (
+                <Row>
+                    <Col s={12} m={4} >
+                        <Input label="Meal" type="select">
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Diner">Diner</option>
+                            <option value="Snack">Snack</option>
+                            <option value="Other">Other (Brunch, etc)</option>
+                        </Input>
+                    </Col>
+                    <Col s={12} m={4} >
+                        <Input label="Meal Title" type="text" />
+                    </Col>
+                    <Col s={12} m={4} >
+                        <Input label="Calories" type="number" />
+                    </Col>
+                </Row>
+
+
+            )
+        }
         var conditionalSub;
         switch (this.state.category) {
             case "Sleeping":
@@ -181,7 +205,7 @@ class NewActivity extends Component{
                 )
         }
         return(
-            <div className="white">
+            <div className="ltBlue">
                 <form>
                     <Row>
                         <Col s={12} m={6} >
@@ -238,6 +262,7 @@ class NewActivity extends Component{
                             <Button onClick={(e) => this.onClick(e)}>Submit</Button>
                         </Col>
                     </Row>
+                    {calorieCounter}
                 </form>
                 <p className="newFormItem">Length {this.state.minDuration} minutes</p>
             </div>
