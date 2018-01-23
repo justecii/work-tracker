@@ -1,7 +1,23 @@
 .App {
-    text-align: center;
+    /* text-align: center; */
     background-color: black;
     font-family: 'Open Sans', sans-serif;
+    height: 100%;
+}
+
+@media (min-width: 800px) {
+    .App {
+        min-height: 800px;
+    }
+}
+
+
+/* button styles */
+
+.btn {
+    background-color: white;
+    color: #ADD8E6;
+    margin-top: 1em;
 }
 
 .row .col {
@@ -26,8 +42,13 @@
 
 .newFormItem {
     font-size: 1.1rem !important;
-    text-align: left;
+    text-align: left !important;
     width: 110% !important;
+}
+
+.left {
+    text-align: left !important;
+    float: left !important;
 }
 
 .fullWidth {

@@ -18,7 +18,11 @@ class NewActivity extends Component{
             addNotes: '',
             meal: '',
             mealTitle: '',
-            calories: 0
+            calories: 0,
+            protein: 0,
+            fat: 0,
+            carbs: 0, 
+            sugar: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleEnd = this.handleEnd.bind(this)
@@ -72,10 +76,30 @@ class NewActivity extends Component{
             calories: parseInt(e.target.value, 0)
         })
     }
+    handleProtein(e) {
+        this.setState({
+            protein: parseInt(e.target.value, 0)
+        })
+    }
+    handleFat(e) {
+        this.setState({
+            fat: parseInt(e.target.value, 0)
+        })
+    }
+    handleCarbs(e) {
+        this.setState({
+            carbs: parseInt(e.target.value, 0)
+        })
+    }
+    handleSugar(e) {
+        this.setState({
+            sugar: parseInt(e.target.value, 0)
+        })
+    }
 
     // Form Submit
     onClick(e){
-        e.preventDefault()
+        // e.preventDefault()
         console.log(this.state)
         var startTime = this.state.startDate._d
         var finishTime = this.state.endDate._d
@@ -107,7 +131,11 @@ class NewActivity extends Component{
                 title: this.state.mealTitle,
                 mealType: this.state.meal,
                 calories: this.state.calories,
+                protein: this.state.protein,
+                fat: this.state.fat,
+                carbs: this.state.carbs,
                 time: startTime,
+                day: actDate,
                 user: this.props.user.id
             })
         }
@@ -134,7 +162,20 @@ class NewActivity extends Component{
                     <Col s={12} m={4} >
                         <Input label="Calories" type="number" onChange={(e) => this.handleCalories(e)} />
                     </Col>
+                    <Col s={12} m={3} >
+                        <Input label="Protein (grams)" type="number" onChange={(e) => this.handleProtein(e)} />
+                    </Col>
+                    <Col s={12} m={3} >
+                        <Input label="Fat (grams)" type="number" onChange={(e) => this.handleFat(e)} />
+                    </Col>
+                    <Col s={12} m={3} >
+                        <Input label="Carbs (grams)" type="number" onChange={(e) => this.handleCarbs(e)} />
+                    </Col>
+                    <Col s={12} m={3} >
+                        <Input label="Sugar (grams)" type="number" onChange={(e) => this.handleSugar(e)} />
+                    </Col>
                 </Row>
+                
 
 
             )
@@ -261,7 +302,7 @@ class NewActivity extends Component{
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} m={4} >
+                        <Col s={12} m={6} >
                             <Input label='Category' type="select" className="newFormItem" onChange={(e) => this.handleCat(e)}>
                                 <option value='Sleeping'>Sleep</option>
                                 <option value='Eating'>Eating</option>
@@ -276,22 +317,24 @@ class NewActivity extends Component{
                                 <option value="Correspondence">Correspondence</option>
                             </Input>
                         </Col>
-                        <Col s={12} m={4} >
+                        <Col s={12} m={6} >
                             {conditionalSub}
-                        </Col>
-                        <Col s={12} m={4} >
-                            <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />
                         </Col>
                     </Row>
                     <Row>
-                        <Col s={12} m={8} >
-                            <Input label='Notes' type="text" className="newFormItem fullWidth" onInput={(e) => this.handleNote(e)} />
+                        <Col s={12} m={6} >
+                            <Input label='Location' type="text" className="newFormItem" onInput={(e) => this.handleLoc(e)} />
                         </Col>
-                        <Col s={12} m={4} >
+                        <Col s={12} m={6}>
+                            <Input label='Notes' type="text" className="newFormItem" onInput={(e) => this.handleNote(e)} />
+                        </Col>
+                        {/* <Col s={12} m={4} >
                             <Button onClick={(e) => this.onClick(e)}>Submit</Button>
-                        </Col>
+                        </Col> */}
                     </Row>
+
                     {calorieCounter}
+                    <Button onClick={(e) => this.onClick(e)}>Submit</Button>
                 </form>
                 <p className="newFormItem">Length {this.state.minDuration} minutes</p>
             </div>

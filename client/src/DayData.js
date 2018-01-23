@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SamplePie from './SamplePie';
+import ActDayData from './ActDayData';
 
 import axios from 'axios';
 import moment from 'moment';
@@ -61,7 +61,7 @@ class DayData extends Component {
                     <Col s={0} m={1}>
                     </Col>
                     <Col s={12} m={9}>
-                    <SamplePie user={this.props.user} selected={this.state.selected} />
+                    <ActDayData user={this.props.user} selected={this.state.selected} />
                     </Col>
                 </Row>
             </div>

@@ -119,8 +119,25 @@ var mealSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    calories: {
+        type: Number,
+        required: true
+    },
+    protein: {
+        type: Number
+    },
+    fat: {
+        type: Number
+    },
+    carbs: {
+        type: Number
+    },
     time: {
         type: String,
+        required: true
+    },
+    day: {
+        type: Date,
         required: true
     },
     user: [{ type: Schema.ObjectId, ref: 'User' }]

@@ -14,6 +14,7 @@ import UserProfile from './UserProfile';
 import ActivityLog from './ActivityLog';
 import CatData from './CatData';
 import NewActivity from './NewActivity';
+import Meals from './Meals';
 import axios from 'axios';
 import { Navbar, Button } from 'react-materialize';
 import Modal from 'react-modal';
@@ -124,10 +125,11 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <Navbar brand="WAID Timer" right>
+            <Navbar brand="WAID" right>
               <li><NavLink to='/profile'>Profile</NavLink></li>
-              <li><NavLink to='/activities'>MyLog</NavLink></li>
-              <li><NavLink to='/new'>NewActivity</NavLink></li>
+              <li><NavLink to='/activities'>My Log</NavLink></li>
+              <li><NavLink to='/new'>New Activity</NavLink></li>
+              <li><NavLink to='meals'>Meals/Calories</NavLink></li>
               <li onClick={this.logout}><NavLink to='/'>Log Out</NavLink></li>
             </Navbar>
             <Route path='/profile' render={(props) => (
@@ -143,6 +145,9 @@ class App extends Component {
             <Route path='/category' render={(props) => (
               <CatData {...props} user={this.state.user} category={this.state} />
              )} />
+            <Route path='/meals' render={(props) => (
+              <Meals {...props} user={this.state.user} />
+            )} />
           </div>
         </Router>
       );

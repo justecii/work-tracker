@@ -5,7 +5,7 @@ import axios from 'axios';
 import {VictoryBar, VictoryLabel} from 'victory';
 import {Row, Col, Icon} from 'react-materialize';
 
-class SamplePie extends Component {
+class ActDayData extends Component {
     constructor(props) {
         super(props)
         this.state={
@@ -22,12 +22,6 @@ class SamplePie extends Component {
             self: 0,
             exercise: 0
         }
-        this.onClick = this.onClick.bind(this)
-    }
-    onClick(e){
-        e.preventDefault();
-        console.log(this.state)
-        console.log(this.props)
     }
 
     componentWillReceiveProps(){
@@ -355,4 +349,4 @@ class SamplePie extends Component {
     }
 }
 
-export default SamplePie;
+export default ActDayData;
