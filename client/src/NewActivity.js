@@ -134,6 +134,7 @@ class NewActivity extends Component{
                 protein: this.state.protein,
                 fat: this.state.fat,
                 carbs: this.state.carbs,
+                sugar: this.state.sugar,
                 time: startTime,
                 day: actDate,
                 user: this.props.user.id

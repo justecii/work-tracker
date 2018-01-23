@@ -64,7 +64,7 @@ class NewMeal extends Component{
         })
     }
     handleSubmit(e){
-        e.preventDefault();
+        // e.preventDefault();
         var startTime = this.state.startDate._d
         var actDate = moment(startTime).format("MM-DD-YYYY")
         if (this.state.calories > 0) {
