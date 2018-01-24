@@ -53,6 +53,9 @@ class MealDayData extends Component {
     render(){
         class Chart extends Component {
             render(){
+                if (this.props.category > this.props.max){
+                    alert("You exceeded your Daily Recommended Value for " + this.props.title)
+                }
                 return (
                     <VictoryBar horizontal
                         data={[{ title: this.props.title, y: this.props.category }]}
@@ -65,12 +68,13 @@ class MealDayData extends Component {
                         y={(d) => (d.y)}
                         width={200}
                         height={10}
-                        domain={{ x: [0, this.props.max] }}
+                        domain={{ x: [0, (this.props.max > this.props.category) ? this.props.max: this.props.category] }}
                         animate={{
                             duration: 2000,
                             onLoad: { duration: 1000 }
                         }}
                         padding={{ left: 0 }}
+                        
                     />
                 )
             }   
