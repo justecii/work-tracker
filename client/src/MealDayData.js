@@ -48,118 +48,58 @@ class MealDayData extends Component {
             }
         })
     }
+    
 
     render(){
+        class Chart extends Component {
+            render(){
+                return (
+                    <VictoryBar horizontal
+                        data={[{ title: this.props.title, y: this.props.category }]}
+                        style={{
+                            data: { fill: this.props.color },
+                            labels: { fill: (this.props.category > this.props.mid) ? "white" : this.props.color, fontSize: '6' }
+                        }}
+                        labels={(d) => `${this.props.category}${this.props.unit} ${this.props.title}`}
+                        labelComponent={<VictoryLabel dx={(this.props.category > this.props.mid) ? -60 : 0} />}
+                        y={(d) => (d.y)}
+                        width={200}
+                        height={10}
+                        domain={{ x: [0, this.props.max] }}
+                        animate={{
+                            duration: 2000,
+                            onLoad: { duration: 1000 }
+                        }}
+                        padding={{ left: 0 }}
+                    />
+                )
+            }   
+        }
         return (
             <div>
                 <Icon className='grn'>restaurant_menu</Icon>
-                <VictoryLabel text=" Calories" className="grn" />
-                <VictoryBar horizontal
-                    data={[{ title: "Calories", y: this.state.calories }]}
-                    style={{
-                        data: { fill: "#61a661" },
-                        labels: { fill: (this.state.calories > 1300) ? "white" : "#61a661", fontSize: '6' }
-                    }}
-                    labels={(d) => `${this.state.calories} Calories`}
-                    labelComponent={<VictoryLabel dx={(this.state.calories > 1300) ? -60 : 0} />}
-                    y={(d) => (d.y)}
-                    width={200}
-                    height={10}
-                    domain={{ x: [0, 2000] }}
-                    animate={{
-                        duration: 2000,
-                        onLoad: { duration: 1000 }
-                    }}
-                    padding={{ left: 0 }}
-                />
+                <VictoryLabel text="Calories" className="grn" />
+                <Chart props={this.state} category={this.state.calories} color={"#61a661"} title={"Calories"} mid={1300} max={2000} unit={""} />
                 <p className="grn">{((this.state.calories)/2000 *100).toFixed(1)} % DV</p>
 
                 <Icon className="orng">redeem</Icon>
                 <VictoryLabel text=" Carbohydrates" className="orng" />
-                <VictoryBar horizontal
-                    data={[{ title: "Calories", y: this.state.carbs }]}
-                    style={{
-                        data: { fill: "#ff6600" },
-                        labels: { fill: (this.state.carbs > 200) ? "white" : "#ff6600", fontSize: '6' }
-                    }}
-                    labels={(d) => `${this.state.carbs}g Carbs`}
-                    labelComponent={<VictoryLabel dx={(this.state.carbs > 200) ? -60 : 0} />}
-                    y={(d) => (d.y)}
-                    width={200}
-                    height={10}
-                    domain={{ x: [0, 300] }}
-                    animate={{
-                        duration: 2000,
-                        onLoad: { duration: 1000 }
-                    }}
-                    padding={{ left: 0 }}
-                />
+                <Chart props={this.state} category={this.state.carbs} color={"#ff6600"} title={"Carbohydrates"} mid={200} max={300} unit={"g"} />
                 <p className="orng">{((this.state.carbs)/300 *100).toFixed(1)} % DV</p>
 
                 <Icon className="purp">pregnant_woman</Icon>
                 <VictoryLabel text=" Fats" className="purp" />
-                <VictoryBar horizontal
-                    data={[{ title: "Fats", y: this.state.fat }]}
-                    style={{
-                        data: { fill: "#6e0dd0" },
-                        labels: { fill: (this.state.fat > 40) ? "white" : "#6e0dd0", fontSize: '6' }
-                    }}
-                    labels={(d) => `${this.state.fat}g Fat`}
-                    labelComponent={<VictoryLabel dx={(this.state.fat > 40) ? -60 : 0} />}
-                    y={(d) => (d.y)}
-                    width={200}
-                    height={10}
-                    domain={{ x: [0, (this.state.fat >65) ? this.state.fat : 65] }}
-                    animate={{
-                        duration: 2000,
-                        onLoad: { duration: 1000 }
-                    }}
-                    padding={{ left: 0 }}
-                />
+                <Chart props={this.state} category={this.state.fat} color={"#6e0dd0"} title={"Fat"} mid={40} max={65} unit={"g"} />
                 <p className="purp">{((this.state.fat)/65*100).toFixed(1)} % DV</p>
 
                 <Icon className="rd">fitness_center</Icon>
                 <VictoryLabel text=" Protein" className="rd" />
-                <VictoryBar horizontal
-                    data={[{ title: "Protein", y: this.state.protein }]}
-                    style={{
-                        data: { fill: "#ff3c3d" },
-                        labels: { fill: (this.state.protein > 30) ? "white" : "#ff3c3d", fontSize: '6' }
-                    }}
-                    labels={(d) => `${this.state.protein}g Protein`}
-                    labelComponent={<VictoryLabel dx={(this.state.protein > 30) ? -60 : 0} />}
-                    y={(d) => (d.y)}
-                    width={200}
-                    height={10}
-                    domain={{ x: [0, 50] }}
-                    animate={{
-                        duration: 2000,
-                        onLoad: { duration: 1000 }
-                    }}
-                    padding={{ left: 0 }}
-                />
+                <Chart props={this.state} category={this.state.protein} color={"#ff3c3d"} title={"Protein"} mid={30} max={50} unit={"g"} />
                 <p className="rd">{((this.state.protein)/50 *100).toFixed(1)} % DV</p>
 
                 <Icon className="yllw">ev_station</Icon>
                 <VictoryLabel text=" Sugar" className="yllw" />
-                <VictoryBar horizontal
-                    data={[{ title: "Sugar", y: this.state.sugar }]}
-                    style={{
-                        data: { fill: "#ffd700" },
-                        labels: { fill: (this.state.sugar > 30) ? "white" : "#ffd700", fontSize: '6' }
-                    }}
-                    labels={(d) => `${this.state.sugar}g Sugar`}
-                    labelComponent={<VictoryLabel dx={(this.state.sugar > 30) ? -60 : 0} />}
-                    y={(d) => (d.y)}
-                    width={200}
-                    height={10}
-                    domain={{ x: [0, 50] }}
-                    animate={{
-                        duration: 2000,
-                        onLoad: { duration: 1000 }
-                    }}
-                    padding={{ left: 0 }}
-                />
+                <Chart props={this.state} category={this.state.sugar} color={"#ffd700"} title={"Sugar"} mid={30} max={50} unit={"g"} />
                 <p className="yllw">{((this.state.sugar)/50*100).toFixed(1)} % DV</p>
                 
                 
