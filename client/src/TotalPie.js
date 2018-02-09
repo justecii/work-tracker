@@ -96,23 +96,26 @@ class TotalPie extends Component {
     render(){
         return(
             <VictoryPie
+                colorScale={["#61a661", "#b784a7", "#ff3c3d", "#ADD8E6", "#ff0099", "#83f52c", 
+                    "#f4a460", "blue", "#ffd700", "#ff6600", "#6e0dd0"
+                ]}
                 data={[
-                    { x: "Sleeping", y: this.state.sleeping },
-                    { x: "Exercise", y: this.state.exercise },
-                    { x: "Correspondence", y: this.state.corresp },
                     { x: "Eating", y: this.state.eating },
+                    { x: "Productivity", y: this.state.product },
+                    { x: "Self-care", y: this.state.self },
+                    { x: "Sleeping", y: this.state.sleeping },
+                    { x: "Chores", y: this.state.chores },
+                    { x: "Adulting", y: this.state.adult },
+                    { x: "Correspondence", y: this.state.corresp },
                     { x: "Leisure", y: this.state.leisure },
                     { x: "Commute", y: this.state.commute },
-                    { x: "Chores", y: this.state.chores},
-                    { x: "Entertainment", y: this.state.entert},
-                    { x: "Adulting", y: this.state.adult},
-                    { x: "Productivity", y: this.state.product},
-                    { x: "Self-care", y: this.state.self}                   
+                    { x: "Entertainment", y: this.state.entert },
+                    { x: "Exercise", y: this.state.exercise }                  
                 ]}
                 theme={VictoryTheme.material}
-                style={{labels: {fontSize:8, fill: "black"}}}
+                style={{ labels: { fontSize: 6, fill: "#ADD8E6"}}}
                 innerRadius={0}
-                labelRadius={100}
+                labelRadius={130}
                 events={[{
                     target: "data",
                     eventHandlers: {
@@ -124,14 +127,14 @@ class TotalPie extends Component {
                                         const fill = props.style && props.style.fill;
                                         const stroke = props.style.stroke;
                                         active: true;
-                                        return { style: { fill: "purple", stroke: "#000" }};
+                                        return { style: { fill: "white", stroke: "#000" }};
                                     }
                                 }, {
                                     target: "labels",
                                     mutation: (props) => {
                                         active: true;
                                         {/* display percentage - convert radians to percentage */}
-                                        return props.angle === 10 ? null : { text: (props.datum.xName) + "  -  "  + ((props.slice.endAngle-props.slice.startAngle)*15.916).toFixed(1)+ "%", angle: 10};
+                                        return props.angle === 1 ? null : { text: (props.datum.xName) + "  -  "  + ((props.slice.endAngle-props.slice.startAngle)*15.916).toFixed(1)+ "%", angle: 1};
                                     }
                                 }
                             ];

@@ -13,7 +13,6 @@ import Home from './Home';
 import UserProfile from './UserProfile';
 import ActivityLog from './ActivityLog';
 import CatData from './CatData';
-import NewActivity from './NewActivity';
 import Meals from './Meals';
 import axios from 'axios';
 import { Navbar, Button } from 'react-materialize';
@@ -29,7 +28,8 @@ const customStyles = {
     marginRight: '-50%',
     padding: '25px',
     transform: 'translate(-50%, -50%)',
-    backgroundColor: 'rgb(196, 50, 53)'
+    backgroundColor: '#ADD8E6',
+    color: 'white'
   }
 };
 
@@ -99,7 +99,7 @@ class App extends Component {
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
+    this.subtitle.style.color = '#ffd700';
   }
 
   closeModal() {
@@ -112,7 +112,7 @@ class App extends Component {
 
   afterOpenSignUp() {
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
+    this.subtitle.style.color = '#ffd700';
   }
 
   closeSignUp() {
@@ -125,10 +125,9 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <Navbar brand="WAID" right>
+            <Navbar brand="Dayly" right>
               <li><NavLink to='/profile'>Profile</NavLink></li>
-              <li><NavLink to='/activities'>My Log</NavLink></li>
-              <li><NavLink to='/new'>New Activity</NavLink></li>
+              <li><NavLink to='/activities'>My Activity</NavLink></li>
               <li><NavLink to='meals'>Meals/Calories</NavLink></li>
               <li onClick={this.logout}><NavLink to='/'>Log Out</NavLink></li>
             </Navbar>
@@ -139,9 +138,7 @@ class App extends Component {
               <ActivityLog {...props} user={this.state.user} redirect={false}/>
             )} />
             <Route exact path='/' component={Home} />
-            <Route path='/new' render={(props) => (
-              <NewActivity {...props} user={this.state.user} />
-            )} />
+
             <Route path='/category' render={(props) => (
               <CatData {...props} user={this.state.user} category={this.state} />
              )} />
@@ -155,7 +152,7 @@ class App extends Component {
       return (
         <Router>
           <div className='App'>
-            <Navbar brand="WAID Timer" right>
+            <Navbar brand="Dayly" right>
               <li ><a onClick={this.openModal} >Login</a></li>
               <li ><a onClick={this.openSignUp} >Sign Up</a></li>
             </Navbar>
@@ -166,7 +163,7 @@ class App extends Component {
               style={customStyles}
               contentLabel="Login Modal"
             >
-              <h2 className="purpleShade" ref={subtitle => this.subtitle = subtitle}>Login</h2>
+              <h2 className="yllw" ref={subtitle => this.subtitle = subtitle}>Login</h2>
               <Login lift={this.liftTokenToState} />
               <Button className="fltRight" onClick={this.closeModal}>Cancel</Button>
             </Modal>
@@ -177,7 +174,7 @@ class App extends Component {
               style={customStyles}
               contentLabel="Sign Up Modal"
             >
-              <h2 className="purpleShade" ref={subtitle => this.subtitle = subtitle}>Sign Up</h2>
+              <h2 className="yllw" ref={subtitle => this.subtitle = subtitle}>Sign Up</h2>
               <Signup lift={this.liftTokenToState} />
               <Button className="inline" onClick={this.closeSignUp}>Cancel</Button>
             </Modal>

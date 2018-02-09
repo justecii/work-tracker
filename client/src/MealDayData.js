@@ -1,5 +1,5 @@
+/*jshint loopfunc: true */
 import React, {Component} from 'react';
-
 import axios from 'axios';
 import { VictoryBar, VictoryLabel } from 'victory';
 import { Row, Col, Icon } from 'react-materialize';
@@ -37,11 +37,11 @@ class MealDayData extends Component {
             for (var i = 0; i < result.data.length; i++){
                 this.setState(prevState => {
                     return {
-                        calories: parseInt(prevState.calories) + parseInt(result.data[i].calories),
-                        protein: parseInt(prevState.protein) + parseInt(result.data[i].protein),
+                        calories: parseInt(prevState.calories, 0) + parseInt(result.data[i].calories, 0),
+                        protein: parseInt(prevState.protein, 0) + parseInt(result.data[i].protein, 0),
                         fat: prevState.fat + result.data[i].fat,
                         carbs: prevState.carbs + result.data[i].carbs,
-                        sugar: parseInt(prevState.sugar) + parseInt(result.data[i].sugar)
+                        sugar: parseInt(prevState.sugar, 0) + parseInt(result.data[i].sugar, 0)
                     } 
                 })
                 console.log(this.state.carbs)
@@ -53,9 +53,9 @@ class MealDayData extends Component {
     render(){
         class Chart extends Component {
             render(){
-                if (this.props.category > this.props.max){
-                    alert("You exceeded your Daily Recommended Value for " + this.props.title)
-                }
+                // if (this.props.category > this.props.max){
+                //     alert("You exceeded your Daily Recommended Value for " + this.props.title)
+                // }
                 return (
                     <VictoryBar horizontal
                         data={[{ title: this.props.title, y: this.props.category }]}

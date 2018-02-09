@@ -44,7 +44,7 @@ class Signup extends Component {
         Name: <input type='text' value={this.state.name} onChange={this.handleNameChange} /><br />
         Email: <input type='text' value={this.state.email} onChange={this.handleEmailChange} /><br />
         Password: <input type='password' value={this.state.password} onChange={this.handlePasswordChange} /><br />
-        <input type='submit' value='Sign Up' />
+        <input className="ltBlue" type='submit' value='Sign Up' />
       </form>
     );
   }

@@ -4,6 +4,7 @@ var { User, Activity, Goal, Meal } = require('../models/user');
 
 router.post('/new', function(req, res, next) {
     console.log(req.body)
+    console.log(req.body.sugar + "THIS IS SUGAR")
     Meal.create({
         title: req.body.title,
         mealType: req.body.mealType,

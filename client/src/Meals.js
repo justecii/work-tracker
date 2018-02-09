@@ -6,7 +6,7 @@ import NewMeal from './NewMeal';
 import axios from 'axios';
 import moment from 'moment';
 
-import { Row, Col, Button, Tabs, Tab } from 'react-materialize';
+import { Tabs, Tab } from 'react-materialize';
 
 class Meals extends Component{
     constructor(props){

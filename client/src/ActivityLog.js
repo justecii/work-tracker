@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CatData from './CatData';
 import TotalPie from './TotalPie';
 import DayData from './DayData';
+import NewActivity from './NewActivity';
 import axios from 'axios';
 import moment from 'moment';
 import {Tabs, Tab, Button} from 'react-materialize';
@@ -18,10 +19,12 @@ class ActivityLog extends Component {
         this.state={
             acts: [],
             category: "",
+            about: true,
             redirect: this.props.redirect
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleRedirect = this.handleRedirect.bind(this);
+        this.handleInfo = this.handleInfo.bind(this);
     }
     componentDidMount(){
         axios.post('/users/actLog', {
@@ -49,6 +52,13 @@ class ActivityLog extends Component {
             category: cat
         })
     }
+    handleInfo(e){
+        e.preventDefault();
+        console.log(this.state)
+        this.setState({
+            about: false
+        })
+    }
     render(){
         let mappedActs = this.state.acts.map((item, index) => (
             <tr key={index}>
@@ -62,6 +72,16 @@ class ActivityLog extends Component {
                 <td>{item.notes}</td>
             </tr>
         ));
+        let aboutInfo;
+        if (this.state.about) {
+           aboutInfo = (
+               <div className="yllw">WORDS GO HERE</div>
+           )
+        } else {
+            aboutInfo =(
+                <div></div>
+            )
+        }
         if (this.state.redirect) {
             return (
                 <CatData user={this.props.user} category={this.state.category} />
@@ -71,7 +91,10 @@ class ActivityLog extends Component {
                 <div>
                     {/* The Activity Log for <span className="bold">{this.props.user.name}</span>  will be here */}
                     
-                    <Tabs className='tab-demo z-depth-1'>
+                    <Tabs className='tab-demo z-depth-1' >
+                        <Tab title="New Activity">
+                            <NewActivity user={this.props.user} />
+                        </Tab>
                         <Tab title="Log">
                             <table className="ltBlue">
                                 <thead>
@@ -94,11 +117,11 @@ class ActivityLog extends Component {
                         <Tab title="Total">
                             <TotalPie user={this.props.user} />
                         </Tab>
-                        <Tab title="Day Tracker">
-                            <DayData user={this.props.user} acts={this.state.acts} />
+                        <Tab title="Day Tracker" onClick={this.handleInfo} >
+                            <DayData user={this.props.user} acts={this.state.acts} onClick={this.handleInfo} />
                         </Tab>
                     </Tabs>
-                    
+                    {aboutInfo}
                 </div>
             )
         }

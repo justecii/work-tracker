@@ -60,10 +60,18 @@
     font-size: 1.4rem;
 }
 
+.block {
+    display: block;
+}
+
+.centered {
+    margin: 0 auto
+}
+
 p {
     margin: 5px 0px;
-    font-family: 'Dosis', sans-serif;
-    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
     color: yellow;
 }
 

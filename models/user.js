@@ -132,6 +132,9 @@ var mealSchema = new mongoose.Schema({
     carbs: {
         type: Number
     },
+    sugar: {
+        type: Number
+    },
     time: {
         type: String,
         required: true

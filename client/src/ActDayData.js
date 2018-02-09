@@ -123,7 +123,7 @@ class ActDayData extends Component {
                         labels={(d) => `${parseInt((this.props.category / 60), 0)} hours ${this.props.category % 60} minutes`}
                         labelComponent={<VictoryLabel dx={(this.props.category > this.props.mid) ? -60 : 0} />}
                         y={(d) => (d.y)}
-                        width={200}
+                        width={300}
                         height={10}
                         domain={{ x: [0, (this.props.max > this.props.category) ? this.props.max : this.props.category] }}
                         animate={{
